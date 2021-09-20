@@ -19,14 +19,14 @@ Kernels can either be even sized or odd sized.Convolution is the process of movi
 
 In the above image we can see that a 3X3 kernel has a centre at 93 whereas the 2X2 matrix has a centre inbetween the 4 grids.Such centers are not preferred.
 
-* Why do we prefer small sized kernels?(why not1X1 ? Why 3X3 ?Why not 5X5 or 7X7?)\
+* Why do we prefer small sized kernels?(why not1X1 ? Why 3X3 ?Why not 5X5 or 7X7?)
 
 Small sized kernels can extract large number of features.\
 As they have large number of layers,they capture complex features.\
 They are more computationally efficient due to the less number of weights.\
 1X1  is not an optimal filter sizes as as it convolutes by 1px ,it is not efficient and adds a lot of layers.\
 3X3 are the next odd sized kernels and they are small .They use less number of parameters.GPUs prefer 3X3 sized kernels as well.So they are the optimal sized kernels.\
-In,5x5 and 7X7 sized kernels (matrices) we will have a large number of weights ,computation becomes expensive and the number of layers are low,so complex features cannot be extracted. Hence we dont prefer them over 3X3 matrix.\
+In,5x5 and 7X7 sized kernels (matrices) we will have a large number of weights ,computation becomes expensive and the number of layers are low,so complex features cannot be extracted. Hence we dont prefer them over 3X3 matrix.
 
 
 ### 3.How many times do we need to perform 3x3 convolutions operations to reach close to 1x1 from 199x199 (type each layer output like 199x199 > 197x197...)
@@ -50,11 +50,11 @@ We have to perform 3x3 convolutions 100 times.\
 ### 4.How are kernels initialized? 
 In Neural Networks,Kernels are initialized to small random numbers.\
 Neural networks uses randomness in order to find a good enough set of weights for kernels for that particular extraction of a feature for that image.\
-They are initialized to random values as it removes any kind of bias while extracting the features.This improves the efficiency of training a Neural Network.\
+They are initialized to random values as it removes any kind of bias while extracting the features.This improves the efficiency of training a Neural Network.
 
 
 ### 5.What happens during the training of a DNN?
-A DNN  has 3 types of layer:\
+A DNN  has 3 types of layer:
 * Input Layer
 * Hidden Layer
 * Output Layer
