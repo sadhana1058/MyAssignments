@@ -34,12 +34,19 @@ In our assignment we are using 3 different normalization techniques
  GN’s computation is independent of batch sizes, and its accuracy is more stable than BN in a wide range of batch sizes.\
 
  ![Group Normalization](https://theaisummer.com/static/cc4cab7d3928c37b81f620fb95f2fb23/63a68/group-normalization.png)
+ 
+ ![image](https://user-images.githubusercontent.com/47341316/139876212-c0e91a31-5ec8-4eca-be13-cbb32fed3802.png)
+![image](https://user-images.githubusercontent.com/47341316/139876326-2e43abdc-bb07-4363-9b4c-b052364bd5b2.png)
+
 
 In GN,we calculate mean and standard deviation across every channel of every image for every group in that batch.
 
  ### ii.Layer Normalization
  In  Layer Normalization (LN), the statistics (mean and variance) are computed across all channels and spatial dims.
  ![Layer Normalization](https://theaisummer.com/static/3ed7199184645f3e632d17ab6441244f/63a68/layer-norm.png)
+ 
+ ![image](https://user-images.githubusercontent.com/47341316/139876104-5d2be674-feb3-4378-9777-68e9b146209f.png)
+
 
 In LN,
 we calculate mean and standard deviation across every pixel in every channel of all images 
@@ -53,6 +60,8 @@ We can think of it as bringing the features of the image in the same range.\
 BN accelerates the training of deep neural networks.\
 
 For every input mini-batch we calculate different statistics. This introduces some sort of regularization.
+![image](https://user-images.githubusercontent.com/47341316/139875772-97646875-726f-4606-868b-1e8ff93862c3.png)
+
 
 In BN,
 we calculate mean and standard deviation across every channel of every image in that batch 
