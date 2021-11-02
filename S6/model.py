@@ -15,7 +15,10 @@ def merge_conv_normalization(conv_layer,normalization_type):
     if normalization_type == "batch":
         nl = nn.BatchNorm2d(conv_layer.out_channels)
     elif normalization_type == "group":
-        group = 2
+        if conv_layer.out_channels%2==0:
+            group = 2
+        else:
+            group=1
         nl = nn.GroupNorm(group, conv_layer.out_channels)
     elif normalization_type == "layer":
         nl = nn.GroupNorm(1, conv_layer.out_channels)
@@ -30,85 +33,81 @@ class Net(nn.Module):
         #Input Block
         self.convblock1 = nn.Sequential(
             merge_conv_normalization(
-                nn.Conv2d(in_channels=1, out_channels=10, kernel_size=3, padding=0, bias=False),   
+                nn.Conv2d(in_channels=1, out_channels=5, kernel_size=3, padding=0, bias=False),   
                 self.normalization_type
             ),
             nn.ReLU(),
             nn.Dropout2d(0.01)
         ) 
         # input_size = 28*28*1
-        # output_size = 26*26*10
+        # output_size = 26*26*5
         # RF = 3
 
         self.convblock2 = nn.Sequential(
+            merge_conv_normalization(
+                nn.Conv2d(in_channels=5, out_channels=10, kernel_size=3, padding=0, bias=False),
+                self.normalization_type
+            ),
+            nn.ReLU(),
+            nn.Dropout2d(0.01)
+        ) 
+        # input_size = 26*26*5
+        # output_size = 24*24*10
+        # RF = 5
+        
+        # Transition block
+        self.maxPool = nn.MaxPool2d(2,2)
+        # input_size = 24*24*10
+        # output_size =12*12*10
+        # RF = 10
+
+        self.convblock3 = nn.Sequential(
             merge_conv_normalization(
                 nn.Conv2d(in_channels=10, out_channels=15, kernel_size=3, padding=0, bias=False),
                 self.normalization_type
             ),
             nn.ReLU(),
-            # nn.BatchNorm2d(15),
             nn.Dropout2d(0.01)
-        ) 
-        # input_size = 26*26*10
-        # output_size = 24*24*15
-        # RF = 5
-        
-        # Transition block
-        self.maxPool = nn.MaxPool2d(2,2)
-        # input_size = 24*24*15
-        # output_size =12*12*15
-        # RF = 10
+        )
+        # input_size = 12*12*10
+        # output_size =10*10*15
+        # RF = 12
 
-        self.convblock3 = nn.Sequential(
+        self.convblock4 = nn.Sequential(
             merge_conv_normalization(
                 nn.Conv2d(in_channels=15, out_channels=20, kernel_size=3, padding=0, bias=False),
                 self.normalization_type
             ),
             nn.ReLU(),
-            # nn.BatchNorm2d(20),
             nn.Dropout2d(0.01)
         )
-        # input_size = 12*12*15
-        # output_size =10*10*20
-        # RF = 12
-
-        self.convblock4 = nn.Sequential(
-            merge_conv_normalization(
-                nn.Conv2d(in_channels=20, out_channels=15, kernel_size=3, padding=0, bias=False),
-                self.normalization_type
-            ),
-            nn.ReLU(),
-            # nn.BatchNorm2d(15),
-            nn.Dropout2d(0.01)
-        )
-        # input_size = 10*10*20
-        # output_size = 8*8*15
+        # input_size = 10*10*15
+        # output_size = 8*8*20
         # RF = 14
 
         self.convblock5 = nn.Sequential(
         merge_conv_normalization(
-            nn.Conv2d(in_channels=15, out_channels=15, kernel_size=3, padding=0, bias=False),
+            nn.Conv2d(in_channels=20, out_channels=20, kernel_size=3, padding=0, bias=False),
             self.normalization_type
         ),
-        nn.ReLU(),
-            # nn.BatchNorm2d(15),
+            nn.ReLU(),
             nn.Dropout2d(0.01)
         )
-        # input_size = 8*8*15
-        # output_size = 6*6*15
+        # input_size = 8*8*20
+        # output_size = 6*6*20
         # RF = 16
 
         #Output Block
         self.gap = nn.AvgPool2d(6)
-        # input_size = 6*6*15
-        # output_size = 1*1*15
+        # input_size = 6*6*20
+        # output_size = 1*1*20
         # RF = 18
 
 
         self.convblock6 = nn.Sequential(
-            nn.Conv2d(in_channels=15, out_channels=10, kernel_size=1, padding=0, bias=False)
+            nn.Conv2d(in_channels=20, out_channels=10, kernel_size=1, padding=0, bias=False)
         )
-        # input_size = 1*1*15
+        # input_size = 1*1*20
         # output_size = 1*1*10
         # RF = 20
 
