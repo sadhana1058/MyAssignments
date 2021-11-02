@@ -12,6 +12,7 @@ In the notebook,I have
 * trained and tested same model with different normlaization techniques
 rained three with three different kinds of normalization
 * plotted graphs for train and test accuracy
+
 In the model.py file,I have
 * created a function to choose normalization type and merge it with convolution layer
 * created a  nueral network which takes input parameter for normalization type  and adds it each block of nueral network
@@ -34,12 +35,19 @@ In our assignment we are using 3 different normalization techniques
  GN’s computation is independent of batch sizes, and its accuracy is more stable than BN in a wide range of batch sizes.\
 
  ![Group Normalization](https://theaisummer.com/static/cc4cab7d3928c37b81f620fb95f2fb23/63a68/group-normalization.png)
+ 
+ ![image](https://user-images.githubusercontent.com/47341316/139876212-c0e91a31-5ec8-4eca-be13-cbb32fed3802.png)
+![image](https://user-images.githubusercontent.com/47341316/139876326-2e43abdc-bb07-4363-9b4c-b052364bd5b2.png)
+
 
 In GN,we calculate mean and standard deviation across every channel of every image for every group in that batch.
 
  ### ii.Layer Normalization
  In  Layer Normalization (LN), the statistics (mean and variance) are computed across all channels and spatial dims.
  ![Layer Normalization](https://theaisummer.com/static/3ed7199184645f3e632d17ab6441244f/63a68/layer-norm.png)
+ 
+ ![image](https://user-images.githubusercontent.com/47341316/139876104-5d2be674-feb3-4378-9777-68e9b146209f.png)
+
 
 In LN,
 we calculate mean and standard deviation across every pixel in every channel of all images 
@@ -53,28 +61,30 @@ We can think of it as bringing the features of the image in the same range.\
 BN accelerates the training of deep neural networks.\
 
 For every input mini-batch we calculate different statistics. This introduces some sort of regularization.
+![image](https://user-images.githubusercontent.com/47341316/139875772-97646875-726f-4606-868b-1e8ff93862c3.png)
+
 
 In BN,
 we calculate mean and standard deviation across every channel of every image in that batch 
 ---
 ### 6.1 Network with Group Normalization 
-n testing the model with L1 loss and  batch normalization.
+On testing the model with L1 loss and  batch normalization.
 
-optimizer: SGD with lr=0.01, momentum=0.9
-scheduler: StepLR with step size=6 and gamma=0.1
-l1 lambda=0.001
+The loss is less,there is slight underfitting.This is efficient compared to the other 2 cases
 
 
 ---
 ### 6.2 Network with Layer Normalization
 On testing the model with layer normalization.
 
-optimizer: SGD with lr=0.01, momentum=0.9
+The loss is less,there is slight underfitting.This is efficient compared to BN+L1
+LN and GN have almost same efficiency looking at the graph
 
-The e
 
 ---
 ### 6.3 Network with L1 loss + Batch Normalization
+There is huge loss and the model does not  touch accuracy above 99%.
+L1 Normalization might be slowing down the model
 
 On testing the model with L1 loss and  batch normalization.
 
@@ -87,7 +97,21 @@ The test and train loss quickly reduces when L1 regularization is applied. moreo
 ### Graphs for Models with different normalization techniques
 
 
-## Train accuracy and train losses
+#### Train accuracy and train losses
+![image](https://user-images.githubusercontent.com/47341316/139875095-ef821307-9e88-4113-a626-bc5f5d361476.png)
 
+#### Test accuracy and  test losses
+![image](https://user-images.githubusercontent.com/47341316/139875051-ba941983-f3a4-4eff-a69e-3a0e2de69163.png)
 
-## Test accuracy and  test losses
+---
+### Misclassified images
+
+#### Group Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874984-53a62cfd-c352-4d9b-8190-51905d874263.png)
+
+#### Layer Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874857-c8d5e660-42ac-4cad-b388-1f7b9ca79ac6.png)
+
+#### Batch Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874758-4ecf6f23-8d10-4442-9b3f-94b7fe3bfa7c.png)
+
