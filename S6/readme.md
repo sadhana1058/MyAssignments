@@ -87,7 +87,21 @@ The test and train loss quickly reduces when L1 regularization is applied. moreo
 ### Graphs for Models with different normalization techniques
 
 
-## Train accuracy and train losses
+#### Train accuracy and train losses
+![image](https://user-images.githubusercontent.com/47341316/139875095-ef821307-9e88-4113-a626-bc5f5d361476.png)
 
+#### Test accuracy and  test losses
+![image](https://user-images.githubusercontent.com/47341316/139875051-ba941983-f3a4-4eff-a69e-3a0e2de69163.png)
 
-## Test accuracy and  test losses
+---
+### Misclassified images
+
+#### Group Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874984-53a62cfd-c352-4d9b-8190-51905d874263.png)
+
+#### Layer Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874857-c8d5e660-42ac-4cad-b388-1f7b9ca79ac6.png)
+
+#### Batch Normalization
+![image](https://user-images.githubusercontent.com/47341316/139874758-4ecf6f23-8d10-4442-9b3f-94b7fe3bfa7c.png)
+
