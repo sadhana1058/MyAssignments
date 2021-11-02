@@ -12,6 +12,7 @@ In the notebook,I have
 * trained and tested same model with different normlaization techniques
 rained three with three different kinds of normalization
 * plotted graphs for train and test accuracy
+
 In the model.py file,I have
 * created a function to choose normalization type and merge it with convolution layer
 * created a  nueral network which takes input parameter for normalization type  and adds it each block of nueral network
@@ -67,23 +68,23 @@ In BN,
 we calculate mean and standard deviation across every channel of every image in that batch 
 ---
 ### 6.1 Network with Group Normalization 
-n testing the model with L1 loss and  batch normalization.
+On testing the model with L1 loss and  batch normalization.
 
-optimizer: SGD with lr=0.01, momentum=0.9
-scheduler: StepLR with step size=6 and gamma=0.1
-l1 lambda=0.001
+The loss is less,there is slight underfitting.This is efficient compared to the other 2 cases
 
 
 ---
 ### 6.2 Network with Layer Normalization
 On testing the model with layer normalization.
 
-optimizer: SGD with lr=0.01, momentum=0.9
+The loss is less,there is slight underfitting.This is efficient compared to BN+L1
+LN and GN have almost same efficiency looking at the graph
 
-The e
 
 ---
 ### 6.3 Network with L1 loss + Batch Normalization
+There is huge loss and the model does not  touch accuracy above 99%.
+L1 Normalization might be slowing down the model
 
 On testing the model with L1 loss and  batch normalization.
 
