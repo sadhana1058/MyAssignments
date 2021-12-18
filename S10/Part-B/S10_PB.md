@@ -1,5 +1,7 @@
 ## **PART - B**
 
+### **Aim**
+
 - ✅ Download coc.txt file. Learn how COCO object detection dataset's schema is. 
 - ✅ Identify these things for this dataset:
   - readme data for class distribution (along with the class names) along with a graph 
