@@ -2,7 +2,7 @@
 
 ### **Aim**
 
-- ✅ Download coc.txt file. Learn how COCO object detection dataset's schema is. 
+- ✅ Download coco.txt file. Learn how COCO object detection dataset's schema is. 
 - ✅ Identify these things for this dataset:
   - readme data for class distribution (along with the class names) along with a graph 
   - Calculate the Anchor Boxes for k = 3, 4, 5, 6 and draw them.
