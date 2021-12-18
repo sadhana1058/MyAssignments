@@ -236,3 +236,8 @@ Test set: Average loss: 0.0070, Accuracy: 18991/33000 (57.55%)
 
 ### **GradCam on MisClassified Images**        
 ![gradcam.PNG](images-A/gradcam.PNG)
+
+
+###  Graph
+![image](https://user-images.githubusercontent.com/47341316/146640291-d401f25e-528e-48c4-a57d-b2f98a852df7.png)
+
