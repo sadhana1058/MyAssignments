@@ -1,10 +1,17 @@
-## S9
+## S9 RESNETS AND HIGHER RECEPTIVE FIELDS(One Cycle Policy)
 
 ### Finding maximum learning rate
 ![image](https://user-images.githubusercontent.com/47341316/146639766-8e24e18e-4932-48fd-b695-c1c815087aa6.png)
 
 ### Data Augmentation
 ![image](https://user-images.githubusercontent.com/47341316/146640110-a7208179-e948-4390-a738-46cca254b312.png)
+
+### Parameters and Hyperparameters
+* Loss Function: Cross Entropy Loss
+* Optimizer: SGD
+* Scheduler: One Cycle Policy
+* Batch Size: 512
+* Epochs: 24
 
 
 ### Final Training Log
@@ -17,6 +24,7 @@ Test set: Average loss: 0.0004, Accuracy: 9365/10000 (93.65%)
 ### Results
 Best Train Accuracy - 96.80%
 Best Test Accuracy -  93.65%
+
 
 ### Classwise  accuracy
 ```
