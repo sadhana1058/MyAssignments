@@ -11,6 +11,7 @@
 6. Total number of parameters in the network is < 200k
 
 ### Model Summary
+```
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -46,7 +47,7 @@ Forward/backward pass size (MB): 1.60
 Params size (MB): 0.75
 Estimated Total Size (MB): 2.37
 ----------------------------------------------------------------
-
+```
 ### Data Augmentation 
 
 Albumentation is a Python library for fast and flexible image augmenation
@@ -62,10 +63,26 @@ transformation performed on the data are
 5. Normalizee - Normalization is applied by the formula: img = (img - mean * max_pixel_value) / (std * max_pixel_value) to noramlize the image.
 6. ToTensorV2 - Converts image and mask to torch.Tensor. 
 
-### Results 
+```
+def getTrainTransforms():
+    train_transforms = A.Compose([
+         A.HorizontalFlip(p=0.5),
+         A.ShiftScaleRotate(shift_limit=0.0625, scale_limit=0.1, rotate_limit=10, p=0.5),
+         A.CoarseDropout(max_holes = 1, max_height=16, max_width=16, min_holes = 1, min_height=16, min_width=16,
+                        fill_value=(0.47)),
+         A.RandomBrightnessContrast (brightness_limit=0.2, contrast_limit=0.2, brightness_by_max=True, 
+                                     always_apply=False, p=0.4),
+         A.Normalize(mean=(0.49139968, 0.48215827 ,0.44653124), std=(0.24703233,0.24348505,0.26158768)),
+         ToTensorV2(),
+         ])
+    return train_transforms
+```
 
+### Results 
+```
 EPOCH: 79
 Loss=0.4280511438846588 Batch_id=195 Accuracy=86.38: 100%|█| 196/196 [00:07
 Accuracy of the network on the 10000 test images: 85 %
+```
 
 85% accuracy on test dataset is achieved in 80 epochs
